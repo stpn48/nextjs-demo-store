@@ -1,16 +1,19 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Cookies from "js-cookie";
+import { useThemeStore } from "@/store/useThemeStore";
 
 export default function ToggleThemeButton() {
+  const { theme, setTheme } = useThemeStore();
+
   const toggleTheme = useCallback(() => {
     const newTheme = Cookies.get("theme") === "light" ? "dark" : "light";
     Cookies.set("theme", newTheme, { expires: 7 });
-    window.location.reload();
-  }, []);
+    setTheme(newTheme);
+  }, [setTheme]);
 
-  return <button onClick={toggleTheme}>{Cookies.get("theme") === "light" ? <MoonIcon /> : <SunIcon />}</button>;
+  return <button onClick={toggleTheme}>{theme === "light" ? <MoonIcon /> : <SunIcon />}</button>;
 }
 
 function SunIcon() {
