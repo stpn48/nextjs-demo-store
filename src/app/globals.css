@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.main-bg.light {
+  background-color: #dadada;
+}
+
+.main-bg.dark {
+  background-color: #131313;
+}
+
+.secondary-bg.light {
+}
+.secondary-bg.dark {
+}
+
+.text-primary.light {
+}
+.text-primary.dark {
+}
+
+.text-secondary.light {
+}
+
+.text-secondary.dark {
+}
