@@ -1,5 +1,5 @@
 import { Product } from "@/types/types";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "../../components/ProductCard";
 
 export async function HeroProducts({}) {
   const res = await Promise.all([
