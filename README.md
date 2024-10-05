@@ -43,7 +43,6 @@ Welcome to the Next.js Demo Store! This repository showcases a modern e-commerce
 	•	React 18
 	•	TypeScript – For type safety and better developer experience.
 	•	Tailwind CSS – For responsive and utility-first styling.
-	•	Prisma – For database management.
 	•	Vercel – For instant deploys and seamless scaling.
 
 🎯 Core Concepts
