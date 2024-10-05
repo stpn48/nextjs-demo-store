@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { useTheme } from "next-themes";
 import { twMerge } from "tailwind-merge";
-import { useThemeStore } from "@/store/useThemeStore";
 
 type Props = {
   children: React.ReactNode;
@@ -11,7 +9,5 @@ type Props = {
 };
 
 export function Container({ children, className }: Props) {
-  const { theme, setTheme } = useThemeStore();
-
-  return <div className={twMerge(`main-bg ${theme}`, className)}>{children}</div>;
+  return <div className={twMerge(``, className)}>{children}</div>;
 }
