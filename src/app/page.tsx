@@ -1,11 +1,11 @@
-"use client";
+import { FeaturedProductsCarousel } from "./components/FeaturedProductsCarousel";
+import { HeroProducts } from "./components/HeroProducts";
 
-import ToggleThemeButton from "@/components/ToggleThemeButton";
-
-export default function Home() {
+export default async function Home() {
   return (
-    <>
-      <ToggleThemeButton />
-    </>
+    <div className="font-geistSans flex flex-col items-center gap-20">
+      <HeroProducts />
+      <FeaturedProductsCarousel />
+    </div>
   );
 }
