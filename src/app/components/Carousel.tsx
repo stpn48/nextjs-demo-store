@@ -1,7 +1,7 @@
 "use client";
 
 import { Product } from "@/types/types";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "../../components/ProductCard";
 import { useEffect, useRef } from "react";
 
 type Props = {
