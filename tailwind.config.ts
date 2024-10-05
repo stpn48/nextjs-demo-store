@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        geistSans: ["var(--font-geist-sans)", "sans-serif"],
+        geistMono: ["var(--font-geist-mono)", "monospace"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -15,5 +19,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  darkMode: "class",
 };
 export default config;
