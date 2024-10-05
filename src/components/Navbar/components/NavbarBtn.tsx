@@ -10,8 +10,7 @@ export function NavbarBtn({ className, children, ...props }: Props) {
   return (
     <button
       className={twMerge(
-        "font-geistMono 
-        main-border-color main-button-color rounded-md border p-2",
+        "main-border-color main-button-color rounded-md border p-2 font-geistMono",
         className,
       )}
       {...props}
