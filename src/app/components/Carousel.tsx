@@ -36,7 +36,7 @@ export function Carousel({ products }: Props) {
   }, [carouselRef]);
 
   return (
-    <div className="w-screen overflow-x-scroll" ref={carouselRef}>
+    <div className="w-screen overflow-x-scroll pb-8" ref={carouselRef}>
       <div className="flex w-max gap-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
