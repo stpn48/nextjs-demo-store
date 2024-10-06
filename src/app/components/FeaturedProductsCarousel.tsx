@@ -3,9 +3,10 @@ import { Product } from "@/types/types";
 import { Carousel } from "./Carousel";
 
 export async function FeaturedProductsCarousel({}) {
-  const res = await fetch("https://api.escuelajs.co/api/v1/products?offset=20&limit=20");
+  const res = await fetch("https://dummyjson.com/products");
 
-  const featuredProducts: Product[] = await res.json();
+  const { products: featuredProducts } = await res.json();
+  console.log(featuredProducts);
 
   return <Carousel products={featuredProducts}></Carousel>;
 }
