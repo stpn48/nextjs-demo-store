@@ -5,9 +5,11 @@ import { Searchbar } from "./components/Searchbar";
 
 export function Navbar() {
   return (
-    <div className="font-geistSans flex items-center justify-center px-2 py-2">
+    <div className="flex items-center justify-center px-2 py-2 font-geistSans">
       <div className="text-secondary absolute left-2 top-2 flex items-center gap-4 text-sm">
-        <NavbarBtn>AppLogo</NavbarBtn>
+        <Link prefetch href={"/"}>
+          <NavbarBtn>Z</NavbarBtn>
+        </Link>
         {/* TODO: Add paths */}
         <Link href={""}>All Items</Link>
         <Link href={""}>About</Link>
