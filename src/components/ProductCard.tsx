@@ -9,21 +9,22 @@ type ProductProps = {
 
 export function ProductCard({ product, size = "sm" }: ProductProps) {
   const imageUrl = product.images[0];
-  const cleanedImageUrl = imageUrl.replace(/["[\]']+/g, "").trim();
 
-  const imgWidth = size === "sm" ? 350 : 600;
-  const imgHeight = size === "sm" ? 350 : 600;
+  // Define dimensions based on size prop
+  const dimensions = size === "sm" ? { width: 350, height: 350 } : { width: 600, height: 600 };
 
   return (
-    <div className="product-card relative h-fit w-fit cursor-pointer rounded-lg border border-transparent transition-all hover:border-blue-600">
-      <Link href={`/product/${product.id}?image=0`}>
-        <div className="overflow-hidden rounded-lg">
+    <div
+      className={`product-card main-border-color relative border bg-black ${size === "sm" ? "h-[350px] w-[350px]" : "h-[600px] w-[600px]"} cursor-pointer rounded-lg border-transparent transition-all hover:border-blue-600`}
+    >
+      <Link prefetch={true} href={`/product/${product.id}?image=0`}>
+        <div className={`h-full w-full overflow-hidden rounded-lg`}>
           <Image
-            className="rounded-lg object-cover transition-transform duration-300 hover:scale-105" // Added object-cover and transform
-            src={cleanedImageUrl}
+            className="rounded-lg object-cover transition-transform duration-300 hover:scale-105"
+            src={imageUrl}
             alt={product.title}
-            width={imgWidth}
-            height={imgHeight}
+            width={dimensions.width}
+            height={dimensions.height}
           />
         </div>
 
