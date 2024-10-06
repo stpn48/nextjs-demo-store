@@ -1,3 +1,4 @@
+import { AddCartButton } from "./AddCartButton";
 import { Product } from "@/types/types";
 
 type Props = {
@@ -13,10 +14,8 @@ export function ProductDetails({ productDetails }: Props) {
           ${productDetails.price}
         </p>
         <p className="text-secondary">{productDetails.description}</p>
+        <AddCartButton productDetails={productDetails} />
       </div>
-      <button className="rounded-full bg-blue-600 px-4 py-3 text-white hover:bg-blue-700">
-        Add To Cart
-      </button>
     </div>
   );
 }
