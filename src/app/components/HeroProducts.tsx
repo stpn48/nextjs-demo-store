@@ -3,12 +3,12 @@ import { ProductCard } from "../../components/ProductCard";
 
 export async function HeroProducts({}) {
   const res = await Promise.all([
-    fetch(`https://api.escuelajs.co/api/v1/products/28`),
-    fetch(`https://api.escuelajs.co/api/v1/products/32`),
-    fetch("https://api.escuelajs.co/api/v1/products/29"),
+    fetch(`https://dummyjson.com/products/17`),
+    fetch(`https://dummyjson.com/products/27`),
+    fetch("https://dummyjson.com/products/23"),
   ]);
 
-  const data: Product[] = await Promise.all(res.map((r) => r.json()));
+  const data = await Promise.all(res.map((r) => r.json()));
 
   return (
     <div className="mt-10 flex items-center gap-8">
