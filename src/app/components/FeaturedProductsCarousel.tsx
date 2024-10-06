@@ -1,5 +1,4 @@
 import React from "react";
-import { Product } from "@/types/types";
 import { Carousel } from "./Carousel";
 
 export async function FeaturedProductsCarousel({}) {

@@ -8,7 +8,7 @@ type ProductProps = {
 };
 
 export function ProductCard({ product, size = "sm" }: ProductProps) {
-  const imageUrl = product.images[0];
+  const imageUrl = product.images ? product.images[0] : "";
 
   // Define dimensions based on size prop
   const dimensions = size === "sm" ? { width: 350, height: 350 } : { width: 600, height: 600 };

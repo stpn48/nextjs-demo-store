@@ -4,7 +4,6 @@ import { useCurrDisplayingImageIndex } from "@/hooks/useCurrDisplayingImageIndex
 import Image from "next/image";
 import { SpinnerButtons } from "./SpinnerButtons";
 import { ImagesPagination } from "./ImagesPagination";
-import { useEffect } from "react";
 
 type Props = {
   images: string[];
@@ -12,10 +11,6 @@ type Props = {
 
 export function ImageSlider({ images }: Props) {
   const { currDisplayingImageIndex, setCurrDisplayingImageIndex } = useCurrDisplayingImageIndex();
-
-  useEffect(() => {
-    console.log(currDisplayingImageIndex);
-  }, [currDisplayingImageIndex]);
 
   return (
     <div className="relative flex w-[540px] flex-col gap-10">

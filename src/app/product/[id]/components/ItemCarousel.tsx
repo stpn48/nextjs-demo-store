@@ -5,8 +5,9 @@ import React from "react";
 type Props = {};
 
 export async function ItemCarousel({}: Props) {
-  const res = await fetch("https://api.escuelajs.co/api/v1/products?offset=10&limit=10");
-  const selectedProducts: Product[] = await res.json();
+  const res = await fetch("https://dummyjson.com/products");
+  const data = await res.json();
+  const selectedProducts: Product[] = data.products;
 
   return (
     <div className="flex w-screen flex-col gap-4 overflow-x-scroll p-4">
