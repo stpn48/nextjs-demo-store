@@ -11,9 +11,12 @@ export function Navbar() {
         <Link prefetch href={"/"}>
           <NavbarBtn>Z</NavbarBtn>
         </Link>
-        {/* TODO: Add paths */}
-        <Link href={""}>All Items</Link>
-        <Link href={""}>About</Link>
+        <Link prefetch={true} href={"/search"}>
+          All Items
+        </Link>
+        <Link prefetch={true} href={"/about"}>
+          About
+        </Link>
       </div>
       <Searchbar />
       <CartButton />
