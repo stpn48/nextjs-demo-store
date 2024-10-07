@@ -8,6 +8,7 @@ import Cart from "@/components/Cart/Cart";
 import { Toaster } from "react-hot-toast";
 import { CartProvider } from "@/store/useCart";
 import { ReactQueryProvider } from "@/components/ReactQueryProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -47,6 +48,7 @@ export default function RootLayout({
         </ReactQueryProvider>
 
         <Toaster />
+        <SpeedInsights />
       </body>
     </html>
   );
