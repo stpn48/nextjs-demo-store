@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
