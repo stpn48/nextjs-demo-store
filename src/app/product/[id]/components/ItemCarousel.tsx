@@ -2,9 +2,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { Product } from "@/types/types";
 import React from "react";
 
-type Props = {};
-
-export async function ItemCarousel({}: Props) {
+export async function ItemCarousel() {
   const res = await fetch("https://dummyjson.com/products");
   const data = await res.json();
   const selectedProducts: Product[] = data.products;
