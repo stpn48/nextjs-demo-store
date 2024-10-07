@@ -1,4 +1,3 @@
-import { Product } from "@/types/types";
 import { ProductCard } from "../../components/ProductCard";
 
 export async function HeroProducts({}) {
