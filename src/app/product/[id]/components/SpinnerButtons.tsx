@@ -29,7 +29,7 @@ export function SpinnerButtons({ className, setCurrDisplayingImageIndex, imageCo
   return (
     <div
       className={twMerge(
-        "text-secondary flex gap-4 rounded-full border border-black bg-[#292929] px-3 py-2 opacity-80",
+        "text-secondary secondary-bg flex gap-4 rounded-full border border-black px-3 py-2 opacity-80",
         className,
       )}
     >
