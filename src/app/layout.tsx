@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer/Footer";
 import Cart from "@/components/Cart/Cart";
 import { Toaster } from "react-hot-toast";
 import { CartProvider } from "@/store/useCart";
+import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,14 +35,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} main-bg font-geistSans antialiased`}
       >
-        <CartProvider>
-          <Container>
-            <Navbar />
-            {children}
-            <Footer />
-            <Cart />
-          </Container>
-        </CartProvider>
+        <ReactQueryProvider>
+          <CartProvider>
+            <Container>
+              <Navbar />
+              {children}
+              <Footer />
+              <Cart />
+            </Container>
+          </CartProvider>
+        </ReactQueryProvider>
 
         <Toaster />
       </body>
