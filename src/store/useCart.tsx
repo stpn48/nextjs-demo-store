@@ -12,6 +12,7 @@ type CartContextType = {
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   getProductQuantity: (productId: number) => number;
+  getTotalPrice: () => number;
 };
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -33,7 +34,13 @@ export function CartProvider({ children }: Props) {
 
   const addToCart = (newProduct: Product) => {
     setCart((prev) => {
-      return [...prev, { ...newProduct, quantity: 1 }];
+      const productExist = prev.find((item) => item.id === newProduct.id);
+
+      if (!productExist) {
+        return [...prev, { ...newProduct, quantity: 1 }];
+      }
+
+      return prev;
     });
   };
 
@@ -49,6 +56,10 @@ export function CartProvider({ children }: Props) {
     return cartItem ? cartItem.quantity : 0;
   };
 
+  const getTotalPrice = () => {
+    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -60,8 +71,9 @@ export function CartProvider({ children }: Props) {
       addToCart,
       removeFromCart,
       getProductQuantity,
+      getTotalPrice,
     };
-  }, [cart, setCart, addToCart, removeFromCart, getProductQuantity]);
+  }, [cart, setCart]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
