@@ -1,7 +1,9 @@
 "use client";
 
 import { useCartVisibility } from "@/store/cartVisibility";
+import { useCart } from "@/store/useCart";
 import { motion, AnimatePresence } from "framer-motion";
+import { CartProductCard } from "./components/CartProductCard";
 
 const slideInVariants = {
   hidden: { x: "100%" }, // start off-screen (to the right)
@@ -11,6 +13,7 @@ const slideInVariants = {
 
 export default function Cart() {
   const { cartVisible, setCartVisible } = useCartVisibility();
+  const { cart, getTotalPrice } = useCart();
 
   return (
     <>
@@ -26,14 +29,38 @@ export default function Cart() {
       <AnimatePresence>
         {cartVisible && (
           <motion.div
-            className="fixed right-0 top-0 z-20 h-screen w-[400px] bg-black p-4 text-white"
+            className="fixed right-0 top-0 z-20 flex h-screen w-[400px] flex-col justify-between bg-black p-4 font-geistSans text-white"
             initial="hidden" // hidden state (off-screen)
             animate="visible" // visible state (onscreen)
             exit="exit" // exit state (off-screen again)
             variants={slideInVariants} // pass in the animation variants
             key="cart" // unique key to track this element
           >
-            <h1 className="text-xl font-bold">Your Cart</h1>
+            <div>
+              <h1 className="text-xl font-bold">Your Cart</h1>
+              <div className="flex flex-col">
+                {cart.map((product) => (
+                  <CartProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="main-border-color flex justify-between border-b py-1">
+                <h1 className="text-secondary">Total</h1>
+                <h1>${getTotalPrice()} USD</h1>
+              </div>
+              <div className="main-border-color flex justify-between border-b py-1">
+                <h1 className="text-secondary">Taxes</h1>
+                <h1>$0.00 USD</h1>
+              </div>
+              <div className="main-border-color text-secondary flex justify-between border-b py-1">
+                <h1>Shipping</h1>
+                <h1 className="text-sm">Calculated at checkout</h1>
+              </div>
+              <button className="w-full rounded-full bg-blue-600 px-4 py-1 hover:bg-blue-700">
+                Checkout
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
