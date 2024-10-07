@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { FilterMenu } from "./components/FilterMenu";
 type Props = {
   children: React.ReactNode;
@@ -7,7 +7,9 @@ type Props = {
 export default function SearchLayout({ children }: Props) {
   return (
     <div className="mt-10 flex gap-4 px-6">
-      <FilterMenu />
+      <Suspense fallback={<p>loading...</p>}>
+        <FilterMenu />
+      </Suspense>
       {children}
     </div>
   );
