@@ -1,8 +1,7 @@
 "use client";
 
 import { Product } from "@/types/types";
-import React, { useCallback, createContext, useContext, useEffect, useMemo, useState } from "react";
-import toast from "react-hot-toast";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type CartItem = Product & { quantity: number };
 
@@ -22,17 +21,18 @@ type Props = {
 };
 
 export function CartProvider({ children }: Props) {
-  const [cart, setCart] = useState<CartItem[]>(() => {
+  const [cart, setCart] = useState<CartItem[]>([]); // Start with an empty cart
+
+  // Fetch cart from localStorage on client side
+  useEffect(() => {
     const cartContent = localStorage.getItem("cart");
 
-    if (cartContent) {
-      return JSON.parse(cartContent);
+    if (cartContent && cartContent !== "undefined") {
+      setCart(JSON.parse(cartContent));
     }
+  }, []); // Run only once when the component mounts
 
-    return [];
-  });
-
-  const addToCart = (newProduct: Product) => {
+  const addToCart = React.useCallback((newProduct: Product) => {
     setCart((prev) => {
       const productExist = prev.find((item) => item.id === newProduct.id);
 
@@ -40,25 +40,29 @@ export function CartProvider({ children }: Props) {
         return [...prev, { ...newProduct, quantity: 1 }];
       }
 
-      return prev;
+      return prev.map((item) =>
+        item.id === newProduct.id ? { ...item, quantity: item.quantity + 1 } : item,
+      );
     });
-  };
+  }, []);
 
-  const removeFromCart = (productId: number) => {
+  const removeFromCart = React.useCallback((productId: number) => {
     setCart((prev) => {
       return prev.filter((item) => item.id !== productId);
     });
-  };
+  }, []);
 
-  const getProductQuantity = (productId: number) => {
-    const cartItem = cart.find((item) => item.id === productId);
+  const getProductQuantity = React.useCallback(
+    (productId: number) => {
+      const cartItem = cart.find((item) => item.id === productId);
+      return cartItem ? cartItem.quantity : 0;
+    },
+    [cart],
+  );
 
-    return cartItem ? cartItem.quantity : 0;
-  };
-
-  const getTotalPrice = () => {
+  const getTotalPrice = React.useCallback(() => {
     return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  };
+  }, [cart]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -73,7 +77,7 @@ export function CartProvider({ children }: Props) {
       getProductQuantity,
       getTotalPrice,
     };
-  }, [cart, setCart]);
+  }, [cart, addToCart, removeFromCart, getProductQuantity, getTotalPrice]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

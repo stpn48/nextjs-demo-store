@@ -1,4 +1,6 @@
-import { useRouter, useSearchParams } from "next/navigation";
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function useCurrDisplayingImageIndex() {

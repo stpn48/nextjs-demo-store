@@ -49,12 +49,12 @@ export interface Product {
 }
 
 // Define types for the overall response structure
-interface ProductResponse {
-  products: Product[];
-  total: number;
-  skip: number;
-  limit: number;
-}
+// interface ProductResponse {
+//   products: Product[];
+//   total: number;
+//   skip: number;
+//   limit: number;
+// }
 
 export type FilterType =
   | "A-Z"

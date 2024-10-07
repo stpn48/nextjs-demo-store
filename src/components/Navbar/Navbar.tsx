@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import { NavbarBtn } from "./components/NavbarBtn";
 import { Searchbar } from "./components/Searchbar";
@@ -18,7 +18,9 @@ export function Navbar() {
           About
         </Link>
       </div>
-      <Searchbar />
+      <Suspense fallback={<p>loading...</p>}>
+        <Searchbar />
+      </Suspense>
       <CartButton />
     </div>
   );

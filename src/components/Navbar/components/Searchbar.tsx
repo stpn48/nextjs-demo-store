@@ -1,13 +1,69 @@
-import React from "react";
+"use client";
+
+import React, { useCallback, useEffect, useState } from "react";
 import { Input } from "./Input";
+import { useSearch } from "@/app/search/store/useSearch";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export function Searchbar() {
+  const { query, setQuery } = useSearch();
+
+  const [localQuery, setLocalQuery] = useState("");
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleSearch = useCallback(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (localQuery === query) return;
+
+    if (!localQuery) {
+      params.delete("q");
+    } else {
+      params.set("q", localQuery);
+    }
+
+    const newQuery = params.toString() ? `?${params.toString()}` : "/search";
+
+    router.push(newQuery);
+
+    setQuery(localQuery);
+  }, [localQuery, query, router, setQuery]);
+
+  useEffect(() => {
+    const searchWithEnter = (e: KeyboardEvent) => {
+      if (e.key === "Enter") handleSearch();
+    };
+
+    window.addEventListener("keydown", (e) => searchWithEnter(e));
+
+    return () => window.removeEventListener("keydown", (e) => searchWithEnter(e));
+  }, [handleSearch]);
+
+  useEffect(() => {
+    const initialQuery = searchParams.get("q");
+
+    if (initialQuery) {
+      setQuery(initialQuery);
+      setLocalQuery(initialQuery);
+    }
+  }, [searchParams, setQuery]);
+
   return (
     <div className="flex h-[38px] items-stretch">
-      <button className="main-border-color h-full flex-grow rounded-bl-md rounded-tl-md border-b border-l border-t p-2">
+      <button
+        onClick={handleSearch}
+        className="main-border-color h-full flex-grow rounded-bl-md rounded-tl-md border-b border-l border-t p-2"
+      >
         <SearchLogo />
       </button>
-      <Input className="rounded-bl-none rounded-tl-none border-l-0" placeholder="Search" />
+      <Input
+        className="rounded-bl-none rounded-tl-none border-l-0"
+        value={localQuery}
+        onChange={(e) => setLocalQuery(e.target.value)}
+        placeholder="Search"
+      />
     </div>
   );
 }

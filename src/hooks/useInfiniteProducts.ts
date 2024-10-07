@@ -10,18 +10,22 @@ import { getFilterParams } from "@/utils/getFilterParams";
 const PRODUCTS_PER_PAGE = 20;
 
 export function useInfiniteProducts() {
-  const { filter } = useSearch();
+  const { filter, query } = useSearch();
 
   const fetchProducts = async ({ pageParam = 0 }) => {
     const { sortBy, order } = getFilterParams(filter);
     const limit = PRODUCTS_PER_PAGE;
     const skip = pageParam * PRODUCTS_PER_PAGE;
-    const url = new URL("https://dummyjson.com/products");
+    const url = new URL("https://dummyjson.com/products/search");
 
     const params: Record<string, string> = {
       limit: limit.toString(),
       skip: skip.toString(),
     };
+
+    if (query) {
+      params.q = query;
+    }
 
     if (sortBy) {
       params.sortBy = sortBy;
@@ -37,25 +41,27 @@ export function useInfiniteProducts() {
     return data.products as Product[];
   };
 
-  const query = useInfiniteQuery({
-    queryKey: ["products", { filter }],
+  // Destructure the necessary parts from useInfiniteQuery
+  const queryResult = useInfiniteQuery({
+    queryKey: ["products", { filter, query }],
     queryFn: fetchProducts,
     getNextPageParam: (lastPage, allPages) => {
       if (lastPage.length < PRODUCTS_PER_PAGE) {
         return undefined;
       }
-
       return allPages.length;
     },
     initialPageParam: 0,
     staleTime: 5 * 60 * 1000, // Cache data for 5 minutes
   });
 
+  const { isFetching, fetchNextPage, hasNextPage } = queryResult;
+
   useEffect(() => {
     const handleScroll = throttle(() => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
-        if (query.hasNextPage && !query.isFetching) {
-          query.fetchNextPage();
+        if (hasNextPage && !isFetching) {
+          fetchNextPage();
         }
       }
     }, 300);
@@ -63,7 +69,8 @@ export function useInfiniteProducts() {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [query.fetchNextPage, query.hasNextPage, query.isFetching]);
+  }, [fetchNextPage, hasNextPage, isFetching]);
 
-  return query;
+  // Restructure the return object like this:
+  return queryResult;
 }
