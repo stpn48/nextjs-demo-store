@@ -14,7 +14,7 @@ export function QuantityButtons({ quantity, setQuantity, productId }: Props) {
 
   const handleIncreaseQuantity = useCallback(() => {
     setQuantity((prev) => (prev !== null ? prev + 1 : 1));
-  }, [setCart]);
+  }, [setCart, quantity, productId]);
 
   const handleDecreaseQuantity = useCallback(() => {
     if (quantity - 1 === 0) {
@@ -23,7 +23,7 @@ export function QuantityButtons({ quantity, setQuantity, productId }: Props) {
     }
 
     setQuantity((prev) => (prev ? prev - 1 : 0));
-  }, [setCart, , quantity]);
+  }, [setCart, quantity, productId, removeFromCart]);
 
   return (
     <div className="main-border-color flex items-center gap-3 rounded-full border bg-black bg-opacity-45 px-2 py-1 text-white">
