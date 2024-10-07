@@ -16,7 +16,7 @@ export function SpinnerButtons({ className, setCurrDisplayingImageIndex, imageCo
       if (prev + 1 > imageCount - 1) return 0;
       return prev + 1;
     });
-  }, [setCurrDisplayingImageIndex]);
+  }, [setCurrDisplayingImageIndex, imageCount]);
 
   const handleLeftClick = useCallback(() => {
     setCurrDisplayingImageIndex((prev) => {
@@ -24,7 +24,7 @@ export function SpinnerButtons({ className, setCurrDisplayingImageIndex, imageCo
       if (prev === 0) return imageCount - 1;
       return prev - 1;
     });
-  }, [setCurrDisplayingImageIndex]);
+  }, [setCurrDisplayingImageIndex, imageCount]);
 
   return (
     <div
