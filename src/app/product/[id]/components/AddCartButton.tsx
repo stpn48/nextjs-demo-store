@@ -17,7 +17,7 @@ export function AddCartButton({ productDetails }: Props) {
   const handleAddToCart = useCallback(() => {
     setCartVisible(true);
     addToCart(productDetails);
-  }, [productDetails]);
+  }, [productDetails, setCartVisible, addToCart]);
 
   return (
     <>
