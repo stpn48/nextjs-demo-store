@@ -38,7 +38,7 @@ export default function Cart() {
           >
             <div>
               <h1 className="text-xl font-bold">Your Cart</h1>
-              <div className="flex h-[640px] flex-col overflow-y-auto">
+              <div className="flex h-[600px] flex-col overflow-y-auto">
                 {cart.map((product) => (
                   <CartProductCard key={product.id} product={product} />
                 ))}
