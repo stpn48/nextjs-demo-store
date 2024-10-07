@@ -17,7 +17,6 @@ export function Carousel({ products }: Props) {
     if (!carousel) return;
 
     const scrollSpeed = 1.5; // Adjust this value to change the scroll speed
-    let startPosition = 0;
 
     const scroll = () => {
       if (carousel.scrollLeft >= carousel.scrollWidth - carousel.offsetWidth) {
