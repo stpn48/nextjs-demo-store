@@ -4,8 +4,11 @@ export function ProductListSkeleton() {
     <div className="flex flex-wrap justify-center gap-4">
       {Array(20)
         .fill("")
-        .map((_) => (
-          <div className="h-[348px] w-[348px] animate-pulse rounded-lg bg-stone-700"></div>
+        .map((_, index) => (
+          <div
+            key={index}
+            className="h-[348px] w-[348px] animate-pulse rounded-lg bg-stone-700"
+          ></div>
         ))}
     </div>
   );
