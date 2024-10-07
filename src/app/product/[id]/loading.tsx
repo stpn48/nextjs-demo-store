@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-export default function loading({}: Props) {
+export default function loading() {
   return (
     <div className="flex min-h-screen w-screen flex-col items-center p-4">
       <div className="main-border-color flex w-fit justify-center gap-10 rounded-lg border bg-black p-10">
