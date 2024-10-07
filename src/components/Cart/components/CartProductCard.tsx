@@ -25,7 +25,7 @@ export function CartProductCard({ product }: Props) {
         return item;
       });
     });
-  }, [quantity]);
+  }, [quantity, product.id, setCart]);
 
   return (
     <div className="main-border-color flex justify-between border-b py-8">
