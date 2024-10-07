@@ -43,7 +43,7 @@ export function CartProductCard({ product }: Props) {
         </div>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <h1>${product.price * quantity} USD</h1>
+        <h1>${(product.price * quantity).toFixed(2)} USD</h1>
         <QuantityButtons productId={product.id} quantity={quantity} setQuantity={setQuantity} />
       </div>
     </div>

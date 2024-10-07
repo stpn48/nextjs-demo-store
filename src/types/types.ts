@@ -55,3 +55,10 @@ interface ProductResponse {
   skip: number;
   limit: number;
 }
+
+export type FilterType =
+  | "A-Z"
+  | "Z-A"
+  | "Price: Highest to Lowest"
+  | "Price: Lowest to Highest"
+  | "";
