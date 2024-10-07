@@ -38,16 +38,17 @@ export default function Cart() {
           >
             <div>
               <h1 className="text-xl font-bold">Your Cart</h1>
-              <div className="flex flex-col">
+              <div className="flex h-[640px] flex-col overflow-y-auto">
                 {cart.map((product) => (
                   <CartProductCard key={product.id} product={product} />
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-4">
+
+            <div className="flex flex-col gap-4 rounded-t-md py-4">
               <div className="main-border-color flex justify-between border-b py-1">
                 <h1 className="text-secondary">Total</h1>
-                <h1>${getTotalPrice()} USD</h1>
+                <h1>${getTotalPrice().toFixed(2)} USD</h1>
               </div>
               <div className="main-border-color flex justify-between border-b py-1">
                 <h1 className="text-secondary">Taxes</h1>
