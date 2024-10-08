@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} main-bg font-geistSans antialiased`}
+        className={`${geistSans.variable} overflow-x-hidden ${geistMono.variable} main-bg font-geistSans antialiased`}
       >
         <ReactQueryProvider>
           <CartProvider>
