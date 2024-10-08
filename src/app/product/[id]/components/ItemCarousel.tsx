@@ -8,7 +8,7 @@ export async function ItemCarousel() {
   const selectedProducts: Product[] = data.products;
 
   return (
-    <div className="flex w-screen flex-col gap-4 overflow-x-scroll p-4">
+    <div className="carousel-container flex w-screen flex-col gap-4 overflow-x-scroll p-4">
       <h1 className="text-2xl font-bold text-white">Related Products</h1>
       <div className="flex w-max gap-4">
         {selectedProducts.map((product) => (
