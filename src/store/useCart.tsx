@@ -1,9 +1,7 @@
 "use client";
 
-import { Product } from "@/types/types";
+import { CartItem, Product } from "@/types/types";
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
-
-type CartItem = Product & { quantity: number };
 
 type CartContextType = {
   cart: CartItem[];
@@ -61,7 +59,7 @@ export function CartProvider({ children }: Props) {
   );
 
   const getTotalPrice = React.useCallback(() => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
   }, [cart]);
 
   useEffect(() => {
