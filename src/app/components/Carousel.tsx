@@ -35,12 +35,13 @@ export function Carousel({ products }: Props) {
   }, [carouselRef]);
 
   return (
-    <div className="w-screen overflow-x-scroll pb-8" ref={carouselRef}>
-      <div className="flex w-max gap-4">
+    <div className="carousel-container w-screen overflow-x-scroll pb-4" ref={carouselRef}>
+      <div className="carousel-container flex w-max gap-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>
   );
+  1;
 }
