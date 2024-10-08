@@ -62,3 +62,5 @@ export type FilterType =
   | "Price: Highest to Lowest"
   | "Price: Lowest to Highest"
   | "";
+
+export type CartItem = Product & { quantity: number };
