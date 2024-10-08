@@ -4,6 +4,7 @@ import { useCartVisibility } from "@/store/cartVisibility";
 import { useCart } from "@/store/useCart";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartProductCard } from "./components/CartProductCard";
+import Link from "next/link";
 
 const slideInVariants = {
   hidden: { x: "100%" }, // start off-screen (to the right)
@@ -38,7 +39,7 @@ export default function Cart() {
           >
             <div>
               <h1 className="text-xl font-bold">Your Cart</h1>
-              <div className="flex h-[600px] flex-col overflow-y-auto">
+              <div className="carousel-container flex h-[600px] flex-col overflow-y-auto">
                 {cart.map((product) => (
                   <CartProductCard key={product.id} product={product} />
                 ))}
@@ -58,9 +59,11 @@ export default function Cart() {
                 <h1>Shipping</h1>
                 <h1 className="text-sm">Calculated at checkout</h1>
               </div>
-              <button className="w-full rounded-full bg-blue-600 px-4 py-1 hover:bg-blue-700">
-                Checkout
-              </button>
+              <Link prefetch href={"/checkout"}>
+                <button className="w-full rounded-full bg-blue-600 px-4 py-1 hover:bg-blue-700">
+                  Checkout
+                </button>
+              </Link>
             </div>
           </motion.div>
         )}
