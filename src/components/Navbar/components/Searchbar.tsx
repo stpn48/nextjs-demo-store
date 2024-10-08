@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Input } from "./Input";
 import { useSearch } from "@/app/search/store/useSearch";
 import { useRouter, useSearchParams } from "next/navigation";
+import path from "path";
 
 export function Searchbar() {
   const { query, setQuery } = useSearch();
@@ -24,7 +25,7 @@ export function Searchbar() {
       params.set("q", localQuery);
     }
 
-    const newQuery = params.toString() ? `?${params.toString()}` : "/search";
+    const newQuery = params.toString() ? `/search?${params.toString()}` : "/search";
 
     router.push(newQuery);
 
