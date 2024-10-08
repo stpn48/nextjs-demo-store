@@ -65,6 +65,8 @@ export function CartProvider({ children }: Props) {
   }, [cart]);
 
   useEffect(() => {
+    if (cart.length === 0) return;
+
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
