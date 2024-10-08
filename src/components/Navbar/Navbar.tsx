@@ -8,13 +8,13 @@ export function Navbar() {
   return (
     <div className="flex items-center justify-center px-2 py-2 font-geistSans">
       <div className="text-secondary absolute left-2 top-2 flex items-center gap-4 text-sm">
-        <Link prefetch href={"/"}>
+        <Link prefetch className="hover:text-white" href={"/"}>
           <NavbarBtn>Z</NavbarBtn>
         </Link>
-        <Link prefetch={true} href={"/search"}>
-          All Items
+        <Link className="hover:text-white" prefetch={true} href={"/search"}>
+          All
         </Link>
-        <Link prefetch={true} href={"/about"}>
+        <Link prefetch={true} className="hover:text-white" href={"/about"}>
           About
         </Link>
       </div>
