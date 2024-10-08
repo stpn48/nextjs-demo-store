@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "../Navbar/components/Input";
+import { Input } from "../Input";
 
 export function NewsletterSignup() {
   return (
