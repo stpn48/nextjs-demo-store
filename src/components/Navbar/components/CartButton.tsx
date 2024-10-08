@@ -10,7 +10,7 @@ export function CartButton() {
   const { cart } = useCart();
 
   return (
-    <NavbarBtn className="absolute right-2 top-2" onClick={() => setCartVisible(true)}>
+    <NavbarBtn className="absolute right-4 top-2" onClick={() => setCartVisible(true)}>
       <div className="relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
