@@ -5,26 +5,26 @@ import React, { useEffect, useState } from "react";
 import { useCheckout } from "../store/useCheckout";
 
 export function CountryInput() {
-  const { country, setCountry, submitInformation } = useCheckout();
+  const { userDetails, setUserDetails, submitInformation } = useCheckout();
 
   const [error, setError] = useState(false);
 
   useEffect(() => {
     if (submitInformation) {
-      if (!country) {
+      if (!userDetails.country) {
         setError(true);
       }
     }
-  }, [submitInformation, country]);
+  }, [submitInformation, userDetails]);
 
   return (
     <div className="flex flex-col gap-1">
       <Input
-        value={country}
+        value={userDetails.country}
         error={error}
         errorMsg={"Invalid Country"}
         setError={setError}
-        onChange={(e) => setCountry(e.target.value)}
+        onChange={(e) => setUserDetails({ ...userDetails, country: e.target.value })}
         required
         requiredMsg="Enter your country"
         wrapperClassName="flex-grow"
