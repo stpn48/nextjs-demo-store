@@ -3,11 +3,12 @@
 import { Input } from "@/components/Input";
 import React, { useEffect, useState } from "react";
 import { useCheckout } from "../store/useCheckout";
-import { stat } from "fs";
+import { s } from "framer-motion/client";
+import { set } from "lodash";
 
 export function CityStatePostalCodeInputs() {
-  const { city, setCity, state, setState, postalCode, setPostalCode, submitInformation } =
-    useCheckout();
+  const { userDetails, setUserDetails, submitInformation } = useCheckout();
+  useCheckout();
 
   const [cityError, setCityError] = useState(false);
   const [stateError, setStateError] = useState(false);
@@ -15,19 +16,19 @@ export function CityStatePostalCodeInputs() {
 
   useEffect(() => {
     if (submitInformation) {
-      if (!city) {
+      if (!userDetails.city) {
         setCityError(true);
       }
 
-      if (!state) {
+      if (!userDetails.state) {
         setStateError(true);
       }
 
-      if (!postalCode) {
+      if (!userDetails.postalCode) {
         setPostalCodeError(true);
       }
     }
-  }, [submitInformation, city, state, postalCode]);
+  }, [submitInformation, userDetails]);
 
   return (
     <div className="flex gap-2">
@@ -35,8 +36,8 @@ export function CityStatePostalCodeInputs() {
         error={cityError}
         errorMsg={"Invalid City"}
         setError={setCityError}
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
+        value={userDetails.city}
+        onChange={(e) => setUserDetails({ ...userDetails, city: e.target.value })}
         required
         requiredMsg="Enter your city"
         wrapperClassName="flex-grow"
@@ -48,8 +49,8 @@ export function CityStatePostalCodeInputs() {
         error={stateError}
         errorMsg={"Invalid State"}
         setError={setStateError}
-        value={state}
-        onChange={(e) => setState(e.target.value)}
+        value={userDetails.state}
+        onChange={(e) => setUserDetails({ ...userDetails, state: e.target.value })}
         required
         requiredMsg="Enter your state"
         wrapperClassName="flex-grow"
@@ -61,8 +62,8 @@ export function CityStatePostalCodeInputs() {
         error={postalCodeError}
         errorMsg={"Invalid Postal Code"}
         setError={setPostalCodeError}
-        value={postalCode}
-        onChange={(e) => setPostalCode(e.target.value)}
+        value={userDetails.postalCode}
+        onChange={(e) => setUserDetails({ ...userDetails, postalCode: e.target.value })}
         required
         requiredMsg="Enter your postal code"
         wrapperClassName="flex-grow"
