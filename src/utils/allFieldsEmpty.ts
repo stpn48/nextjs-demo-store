@@ -10,6 +10,7 @@ export function allFieldsAreEmpty(userDetails: UserDetails) {
     !userDetails.apartment &&
     !userDetails.city &&
     !userDetails.state &&
-    !userDetails.postalCode
+    !userDetails.postalCode &&
+    !userDetails.localStorageKey
   );
 }
