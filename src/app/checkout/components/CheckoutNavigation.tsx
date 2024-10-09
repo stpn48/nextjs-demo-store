@@ -30,6 +30,7 @@ export default function CheckoutNavigation() {
           "cursor-pointer hover:text-white",
           pathname === "/checkout/shipping" && "text-white",
           pathname === "/checkout/payment" && "text-blue-600",
+          pathname === "/checkout/information" && "text-secondary pointer-events-none",
         )}
         href={"/checkout/shipping"}
       >
@@ -42,6 +43,8 @@ export default function CheckoutNavigation() {
         className={twMerge(
           "cursor-pointer hover:text-white",
           pathname === "/checkout/payment" && "text-white",
+          (pathname === "/checkout/information" || pathname === "/checkout/shipping") &&
+            "text-secondary pointer-events-none",
         )}
         href={"/checkout/payment"}
       >

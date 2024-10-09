@@ -10,14 +10,14 @@ type Props = {
   children: React.ReactNode;
 };
 
-export function ProtectedShippingRoute({ children }: Props) {
+export function ProtectedCheckoutRoute({ children }: Props) {
   const { userDetails, setSubmitInformation } = useCheckout();
 
   const router = useRouter();
 
   useEffect(() => {
     if (!allFieldsValid(userDetails) && !allFieldsAreEmpty(userDetails)) {
-      setSubmitInformation(false); // Set submitInformation to false, bcs submission was invalid
+      setSubmitInformation(true); // Set submitInformation to false, bcs submission was invalid
       router.push("/checkout/information");
     }
   }, [userDetails, router]);
