@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCheckout } from "../information/store/useCheckout";
 import { allFieldsAreEmpty } from "@/utils/allFieldsEmpty";
 import { LoadingSkeleton } from "../information/components/LoadingSkeleton";
@@ -39,7 +39,7 @@ export function LocalStorageUserDetailsHandler({ children }: { children: React.R
     if (cart.length === 0) {
       router.push("/");
     }
-  }, [cart]);
+  }, [cart, router]);
 
   if (allFieldsAreEmpty(userDetails)) {
     return <LoadingSkeleton />;

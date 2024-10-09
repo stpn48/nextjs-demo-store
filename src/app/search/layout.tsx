@@ -7,7 +7,10 @@ type Props = {
 export default function SearchLayout({ children }: Props) {
   return (
     <div className="mt-10 flex flex-col items-center gap-4 px-6 md:flex-row md:items-start">
-      <FilterMenu />
+      <Suspense fallback={<p className="text-secondary">loading...</p>}>
+        <FilterMenu />
+      </Suspense>
+
       {children}
     </div>
   );

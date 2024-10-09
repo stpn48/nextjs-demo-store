@@ -4,10 +4,9 @@ import { useCartVisibility } from "@/store/cartVisibility";
 import { useCart } from "@/store/useCart";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartProductCard } from "./components/CartProductCard";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useCheckout } from "@/app/checkout/information/store/useCheckout";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import { useCheckoutButton } from "./useCheckoutButton";
 
 const slideInVariants = {
