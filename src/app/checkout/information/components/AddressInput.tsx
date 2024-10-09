@@ -5,12 +5,12 @@ import React, { useEffect, useState } from "react";
 import { useCheckout } from "../store/useCheckout";
 
 export function AddressInput() {
-  const { address, setAddress, submitInformation } = useCheckout();
+  const { userDetails, setUserDetails, submitInformation } = useCheckout();
 
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (submitInformation && !address) {
+    if (submitInformation && !userDetails.address) {
       setError(true);
     }
   }, [submitInformation, setError]);
@@ -20,8 +20,8 @@ export function AddressInput() {
       <Input
         error={error}
         setError={setError}
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
+        value={userDetails.address}
+        onChange={(e) => setUserDetails({ ...userDetails, address: e.target.value })}
         required
         requiredMsg="Enter your address"
         wrapperClassName="flex-grow"
