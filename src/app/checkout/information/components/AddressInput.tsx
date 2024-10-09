@@ -13,7 +13,7 @@ export function AddressInput() {
     if (submitInformation && !userDetails.address) {
       setError(true);
     }
-  }, [submitInformation, setError]);
+  }, [submitInformation, setError, userDetails]);
 
   return (
     <div className="flex flex-col gap-1">

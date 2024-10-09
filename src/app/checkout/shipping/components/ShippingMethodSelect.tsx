@@ -5,8 +5,6 @@ import { DeliveryChoice } from "./DeliveryChoice";
 import { useCart } from "@/store/useCart";
 import { useCheckout } from "../../information/store/useCheckout";
 
-type Props = {};
-
 const deliveryChoices = [
   {
     id: 0,
@@ -28,7 +26,7 @@ const deliveryChoices = [
   },
 ];
 
-export function ShippingMethodSelect({}: Props) {
+export function ShippingMethodSelect() {
   const { setShippingPrice } = useCart();
   const { userDetails, setUserDetails } = useCheckout();
   const [selectedChoice, setSelectedChoice] = useState(userDetails.shippingMethodId);
@@ -41,12 +39,13 @@ export function ShippingMethodSelect({}: Props) {
       shippingMethodId: selectedChoice,
       shippingMethod: deliveryChoices[selectedChoice].title,
     }));
-  }, [selectedChoice]);
+  }, [selectedChoice, setUserDetails, setShippingPrice]);
 
   return (
     <div className="flex flex-col text-sm">
       {deliveryChoices.map((choice) => (
         <DeliveryChoice
+          key={choice.id}
           onClick={() => setSelectedChoice(choice.id)}
           selected={selectedChoice === choice.id}
           title={choice.title}

@@ -57,7 +57,7 @@ export function Input({
       setDisplayLabel(!!value); // Show label if there is a value
       setText(value ? label || "label" : ""); // Update text only if there's a value
     },
-    [setShowRequiredError, setDisplayLabel, required, setError, onChange],
+    [setShowRequiredError, setDisplayLabel, required, setError, onChange, label],
   );
 
   useEffect(() => {

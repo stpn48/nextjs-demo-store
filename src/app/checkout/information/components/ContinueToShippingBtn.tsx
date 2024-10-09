@@ -26,7 +26,7 @@ export default function ContinueToShippingBtn() {
     router.prefetch("/checkout/shipping");
     router.push("/checkout/shipping");
     setSubmitInformation(false);
-  }, [submitInformation, userDetails]);
+  }, [submitInformation, userDetails, router, setSubmitInformation]);
 
   return (
     <button

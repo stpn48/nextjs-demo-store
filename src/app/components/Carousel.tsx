@@ -43,5 +43,4 @@ export function Carousel({ products }: Props) {
       </div>
     </div>
   );
-  1;
 }

@@ -9,7 +9,7 @@ type Props = {
   label?: string;
 };
 
-export function Checkbox({ onCheck, onUncheck, label }: Props) {
+export function Checkbox({ label }: Props) {
   const [isChecked, setIsChecked] = useState(false);
 
   return (

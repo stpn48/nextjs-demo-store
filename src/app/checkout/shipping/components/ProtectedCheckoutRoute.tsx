@@ -20,7 +20,7 @@ export function ProtectedCheckoutRoute({ children }: Props) {
       setSubmitInformation(true); // Set submitInformation to false, bcs submission was invalid
       router.push("/checkout/information");
     }
-  }, [userDetails, router]);
+  }, [userDetails, router, setSubmitInformation]);
 
   return <>{children}</>;
 }

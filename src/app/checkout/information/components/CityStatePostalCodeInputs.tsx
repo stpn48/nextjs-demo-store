@@ -3,8 +3,6 @@
 import { Input } from "@/components/Input";
 import React, { useEffect, useState } from "react";
 import { useCheckout } from "../store/useCheckout";
-import { s } from "framer-motion/client";
-import { set } from "lodash";
 
 export function CityStatePostalCodeInputs() {
   const { userDetails, setUserDetails, submitInformation } = useCheckout();

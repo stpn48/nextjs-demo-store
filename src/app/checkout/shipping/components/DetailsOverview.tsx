@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useCheckout } from "../../information/store/useCheckout";
-import Link from "next/link";
 import { OverviewCard } from "../../payment/components/OverviewCard";
 
 export function DetailsOverview() {

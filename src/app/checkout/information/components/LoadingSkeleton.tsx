@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-export function LoadingSkeleton({}: Props) {
+export function LoadingSkeleton() {
   return (
     <div className="flex h-fit w-screen justify-center p-8 font-geistSans text-white">
       <div className="main-border-color flex h-fit w-full max-w-[1400px] rounded-lg border bg-black">

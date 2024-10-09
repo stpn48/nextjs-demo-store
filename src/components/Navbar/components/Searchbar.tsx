@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Input } from "../../Input";
 import { useSearch } from "@/app/search/store/useSearch";
 import { useRouter, useSearchParams } from "next/navigation";
-import path from "path";
 
 export function Searchbar() {
   const { query, setQuery } = useSearch();
