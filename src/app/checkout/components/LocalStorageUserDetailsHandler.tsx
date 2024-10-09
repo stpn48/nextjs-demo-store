@@ -21,11 +21,10 @@ export function LocalStorageUserDetailsHandler({ children }: { children: React.R
   // retrieve user details from local storage when component mounts
   useEffect(() => {
     const data = localStorage.getItem("checkoutUserData");
-    if (data) {
+    if (data !== null) {
       const storedUserDetails = JSON.parse(data);
       setUserDetails(storedUserDetails);
-
-      toast.success("User details retrieved from local storage.");
+      toast.success("User detail s retrieved from local storage.");
     }
   }, [setUserDetails]);
 

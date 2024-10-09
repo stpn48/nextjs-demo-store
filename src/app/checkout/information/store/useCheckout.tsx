@@ -22,7 +22,7 @@ export const useCheckout = create<Store>((set) => ({
     postalCode: "",
     shippingMethodId: 1,
     shippingMethod: "Fast Delivery",
-    localStorageKey: "checkoutUserData",
+    localStorageKey: "",
   },
   setUserDetails: (val) =>
     set((state) => ({
