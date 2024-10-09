@@ -8,5 +8,5 @@ type Props = {
 };
 
 export function Container({ children, className }: Props) {
-  return <div className={twMerge(``, className)}>{children}</div>;
+  return <div className={twMerge(`overflow-x-hidden`, className)}>{children}</div>;
 }
