@@ -23,7 +23,7 @@ export function AddCartButton({ productDetails }: Props) {
     <>
       <button
         onClick={handleAddToCart}
-        className="mt-10 rounded-full bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+        className="mt-10 w-full rounded-full bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
       >
         Add To Cart
       </button>

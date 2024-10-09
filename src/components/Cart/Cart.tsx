@@ -44,7 +44,7 @@ export default function Cart() {
       <AnimatePresence>
         {cartVisible && (
           <motion.div
-            className="fixed right-0 top-0 z-20 flex h-screen w-[400px] flex-col justify-between bg-black p-4 font-geistSans text-white"
+            className="fixed right-0 top-0 z-20 flex h-screen w-full flex-col justify-between bg-black p-4 font-geistSans text-white md:w-[400px]"
             initial="hidden" // hidden state (off-screen)
             animate="visible" // visible state (onscreen)
             exit="exit" // exit state (off-screen again)
@@ -52,6 +52,18 @@ export default function Cart() {
             key="cart" // unique key to track this element
           >
             <div className="carousel-container flex flex-col overflow-y-auto">
+              <button onClick={() => setCartVisible(false)} className="absolute right-4 top-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-4 text-white"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+              </button>
               <h1 className="text-xl font-bold">Your Cart</h1>
 
               {cart.length === 0 && (

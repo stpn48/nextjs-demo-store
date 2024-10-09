@@ -11,7 +11,12 @@ export async function HeroProducts({}) {
 
   return (
     <div className="mt-10 flex flex-col items-center gap-8 md:flex-row">
-      <ProductCard size="lg" product={data[0]} />
+      <div className="hidden md:block">
+        <ProductCard size="lg" product={data[0]} />
+      </div>
+      <div className="block md:hidden">
+        <ProductCard size="sm" product={data[0]} />
+      </div>
       <div className="flex flex-col gap-8">
         <ProductCard product={data[1]} />
         <ProductCard product={data[2]} />
