@@ -7,19 +7,19 @@ import { useEffect, useState } from "react";
 import { checkIfEmailIsValid } from "@/utils/checkIfEmailIsValid";
 
 export function EmailInput() {
-  const { email, setEmail, submitInformation } = useCheckout();
+  const { userDetails, setUserDetails, submitInformation } = useCheckout();
 
   const [error, setError] = useState(false);
 
   useEffect(() => {
     if (submitInformation) {
-      const isValid = checkIfEmailIsValid(email);
+      const isValid = checkIfEmailIsValid(userDetails.email);
 
       if (!isValid) {
         setError(true);
       }
     }
-  }, [submitInformation, email]);
+  }, [submitInformation, userDetails]);
 
   return (
     <>
@@ -27,8 +27,8 @@ export function EmailInput() {
         error={error}
         errorMsg={"Invalid Email"}
         setError={setError}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={userDetails.email}
+        onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })}
         label="Email"
         required
         requiredMsg="Enter your email"
