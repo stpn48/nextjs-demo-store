@@ -6,8 +6,8 @@ import { NewsletterSignup } from "./NewsletterSignup";
 
 export function Footer() {
   return (
-    <div className="flex w-full flex-col font-geistSans text-sm">
-      <div className="main-border-color mt-10 flex h-[300px] w-full items-center gap-20 border-t p-4 px-10 text-sm text-white">
+    <div className="flex w-full flex-col overflow-x-hidden font-geistSans text-sm">
+      <div className="main-border-color mt-10 flex h-[300px] w-full items-center gap-20 overflow-x-hidden border-t p-4 px-10 text-sm text-white">
         <div className="flex items-center gap-2">
           <NavbarBtn className="text-secondary text-sm">Z</NavbarBtn>
           <h1 className="whitespace-nowrap font-geistMono font-semibold">ZOMRAK STORE</h1>

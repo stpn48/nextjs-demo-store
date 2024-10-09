@@ -10,6 +10,7 @@ type CartContextType = {
   removeFromCart: (productId: number) => void;
   getProductQuantity: (productId: number) => number;
   getTotalPrice: () => number;
+  setShippingPrice: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -20,6 +21,7 @@ type Props = {
 
 export function CartProvider({ children }: Props) {
   const [cart, setCart] = useState<CartItem[]>([]); // Start with an empty cart
+  const [shippingPrice, setShippingPrice] = useState<number>(0);
 
   // Fetch cart from localStorage on client side
   useEffect(() => {
@@ -59,8 +61,11 @@ export function CartProvider({ children }: Props) {
   );
 
   const getTotalPrice = React.useCallback(() => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
-  }, [cart]);
+    return (
+      Number(cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)) +
+      shippingPrice
+    );
+  }, [cart, shippingPrice]);
 
   useEffect(() => {
     if (cart.length === 0) return;
@@ -76,6 +81,7 @@ export function CartProvider({ children }: Props) {
       removeFromCart,
       getProductQuantity,
       getTotalPrice,
+      setShippingPrice,
     };
   }, [cart, addToCart, removeFromCart, getProductQuantity, getTotalPrice]);
 

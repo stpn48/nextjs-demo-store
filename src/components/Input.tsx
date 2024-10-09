@@ -9,6 +9,10 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   wrapperClassName?: string;
   required?: boolean;
   requiredMsg?: string;
+  error?: boolean;
+  errorMsg?: string;
+  setError?: React.Dispatch<React.SetStateAction<boolean>>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export function Input({
@@ -17,18 +21,20 @@ export function Input({
   wrapperClassName,
   required,
   requiredMsg,
+  error,
+  errorMsg,
+  setError,
+  onChange,
   ...props
 }: Props) {
+  const [text, setText] = useState("");
   const [displayLabel, setDisplayLabel] = useState(false);
   const [showRequiredError, setShowRequiredError] = useState(false);
 
   const handleOnBlur = useCallback(
     (e: React.FocusEvent<HTMLInputElement, Element>) => {
       // input is not required so don't check
-      if (!required) return;
-
-      // input is required so when user loses focus and its empty show the error
-      if (!e.target.value) {
+      if (required && !e.target.value) {
         setShowRequiredError(true);
       }
     },
@@ -37,23 +43,37 @@ export function Input({
 
   const handleOnChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      // if input is required and user has not entered anything, show the error
-      if (required) {
-        setShowRequiredError(!!!e.target.value);
+      if (setError) {
+        setError(false);
+        setShowRequiredError(false);
       }
 
-      // show label if not empty if value is "" it will result in false (don't show label) else show the label
-      setDisplayLabel(!!e.target.value);
+      if (onChange) {
+        onChange(e);
+      }
+
+      const value = e.target.value;
+
+      setDisplayLabel(!!value); // Show label if there is a value
+      setText(value ? label || "label" : ""); // Update text only if there's a value
     },
-    [setShowRequiredError, setDisplayLabel, required],
+    [setShowRequiredError, setDisplayLabel, required, setError, onChange],
   );
 
   useEffect(() => {
     // when required error is true, show the label otherwise it would have been hidden.
     if (showRequiredError) {
+      setText(requiredMsg || "This field is required");
       setDisplayLabel(true);
     }
-  }, [showRequiredError]);
+  }, [showRequiredError, requiredMsg]);
+
+  useEffect(() => {
+    if (error) {
+      setText(errorMsg || "This field is invalid");
+      setDisplayLabel(true);
+    }
+  }, [error, errorMsg]);
 
   return (
     <div className={twMerge("relative w-full", wrapperClassName)}>
@@ -63,7 +83,7 @@ export function Input({
         className={twMerge(
           "none rounded-md border bg-inherit p-2 text-sm text-white outline-none",
           className,
-          showRequiredError ? "border-[#db235b]" : "main-border-color",
+          showRequiredError || error ? "border-[#db235b]" : "main-border-color",
         )}
         {...props}
       />
@@ -72,10 +92,10 @@ export function Input({
           className={twMerge(
             `absolute left-2 top-0 -translate-y-2 transform bg-black text-xs transition-all`,
             displayLabel ? "text-xs opacity-100" : "text-sm opacity-0",
-            showRequiredError ? "text-[#db235b]" : "text-secondary",
+            showRequiredError || error ? "text-[#db235b]" : "text-secondary",
           )}
         >
-          {showRequiredError ? requiredMsg || "nic" : label}
+          {text}
         </label>
       )}
     </div>

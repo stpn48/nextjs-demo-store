@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DeliveryChoice } from "./DeliveryChoice";
+import { useCart } from "@/store/useCart";
+import { useCheckout } from "../../information/store/useCheckout";
 
 type Props = {};
 
@@ -27,7 +29,19 @@ const deliveryChoices = [
 ];
 
 export function ShippingMethodSelect({}: Props) {
-  const [selectedChoice, setSelectedChoice] = useState(1);
+  const { setShippingPrice } = useCart();
+  const { userDetails, setUserDetails } = useCheckout();
+  const [selectedChoice, setSelectedChoice] = useState(userDetails.shippingMethodId);
+
+  useEffect(() => {
+    setShippingPrice(deliveryChoices[selectedChoice].price);
+
+    setUserDetails((prev) => ({
+      ...prev,
+      shippingMethodId: selectedChoice,
+      shippingMethod: deliveryChoices[selectedChoice].title,
+    }));
+  }, [selectedChoice]);
 
   return (
     <div className="flex flex-col text-sm">

@@ -64,3 +64,18 @@ export type FilterType =
   | "";
 
 export type CartItem = Product & { quantity: number };
+
+export type UserDetails = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  country: string;
+  apartment: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  shippingMethodId: number;
+  shippingMethod: string;
+  localStorageKey: string;
+};

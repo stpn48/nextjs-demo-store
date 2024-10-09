@@ -3,7 +3,7 @@ import { HeroProducts } from "./components/HeroProducts";
 
 export default async function Home() {
   return (
-    <div className="font-geistSans flex flex-col items-center gap-20">
+    <div className="flex flex-col items-center gap-20 overflow-x-hidden font-geistSans">
       <HeroProducts />
       <FeaturedProductsCarousel />
     </div>

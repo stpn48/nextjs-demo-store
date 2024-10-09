@@ -6,7 +6,7 @@ import { CartButton } from "./components/CartButton";
 
 export function Navbar() {
   return (
-    <div className="flex items-center justify-center px-2 py-2 font-geistSans">
+    <div className="flex items-center justify-center overflow-x-hidden px-2 py-2 font-geistSans">
       <div className="text-secondary absolute left-2 top-2 flex items-center gap-4 text-sm">
         <Link prefetch className="hover:text-white" href={"/"}>
           <NavbarBtn>Z</NavbarBtn>

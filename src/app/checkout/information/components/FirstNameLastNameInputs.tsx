@@ -5,23 +5,23 @@ import React, { useEffect, useState } from "react";
 import { useCheckout } from "../store/useCheckout";
 
 export function FirstNameLastNameInputs() {
-  const { firstName, setFirstName, lastName, setLastName, submitInformation } = useCheckout();
+  const { userDetails, setUserDetails, submitInformation } = useCheckout();
 
   const [lastNameError, setLastNameError] = useState(false);
 
   useEffect(() => {
     if (submitInformation) {
-      if (!lastName) {
+      if (!userDetails.lastName) {
         setLastNameError(true);
       }
     }
-  }, [submitInformation, lastName]);
+  }, [submitInformation, userDetails]);
 
   return (
     <div className="flex w-full gap-2">
       <Input
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
+        value={userDetails.firstName}
+        onChange={(e) => setUserDetails({ ...userDetails, firstName: e.target.value })}
         wrapperClassName="flex-grow"
         className="w-full py-3"
         placeholder="First name (optional)"
@@ -31,8 +31,8 @@ export function FirstNameLastNameInputs() {
         error={lastNameError}
         errorMsg={"Invalid Last Name"}
         setError={setLastNameError}
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
+        value={userDetails.lastName}
+        onChange={(e) => setUserDetails({ ...userDetails, lastName: e.target.value })}
         required
         requiredMsg="Enter your last name"
         wrapperClassName="flex-grow"
