@@ -16,7 +16,7 @@ export function useCheckoutButton() {
     } else {
       setCheckoutButtonDisabled(false);
     }
-  }, [cart.length]);
+  }, [cart, setCheckoutButtonDisabled]);
 
   // disable body scroll when cart is open
   useEffect(() => {
