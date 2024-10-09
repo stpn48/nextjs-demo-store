@@ -3,21 +3,10 @@
 import React, { useCallback, useEffect } from "react";
 import { useCheckout } from "../store/useCheckout";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
-import { checkIfEmailIsValid } from "@/utils/checkIfEmailIsValid";
+import { allFieldsValid } from "@/utils/allFieldsValid";
 
 export default function ContinueToShippingBtn() {
-  const {
-    email,
-    lastName,
-    country,
-    apartment,
-    city,
-    state,
-    postalCode,
-    submitInformation,
-    setSubmitInformation,
-  } = useCheckout();
+  const { userDetails, submitInformation, setSubmitInformation } = useCheckout();
 
   const router = useRouter();
 
@@ -28,7 +17,7 @@ export default function ContinueToShippingBtn() {
   useEffect(() => {
     if (!submitInformation) return;
 
-    if (!checkIfEmailIsValid(email) || !lastName || !country || !city || !state || !postalCode) {
+    if (!allFieldsValid(userDetails)) {
       setSubmitInformation(false);
       return;
     }
@@ -37,12 +26,12 @@ export default function ContinueToShippingBtn() {
     router.prefetch("/checkout/shipping");
     router.push("/checkout/shipping");
     setSubmitInformation(false);
-  }, [submitInformation, email, lastName, country, apartment, city, state, postalCode]);
+  }, [submitInformation, userDetails]);
 
   return (
     <button
       onClick={handleClick}
-      className="mt-10 w-full rounded-md bg-blue-600 px-4 py-2 hover:bg-blue-700"
+      className="mt-10 w-full rounded-full bg-blue-600 px-4 py-2 hover:bg-blue-700"
     >
       Continue to shipping
     </button>
