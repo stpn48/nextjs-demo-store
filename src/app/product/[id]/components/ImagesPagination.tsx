@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction } from "react";
 type Props = {
   images: string[];
   currDisplayingImageIndex: number | null;
-  setCurrDisplayingImageIndex: Dispatch<SetStateAction<number | null>>;
+  setCurrDisplayingImageIndex: Dispatch<SetStateAction<number>>;
 };
 
 export function ImagesPagination({

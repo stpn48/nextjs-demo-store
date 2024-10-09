@@ -14,21 +14,15 @@ export function ImageSlider({ images }: Props) {
 
   return (
     <div className="relative flex w-[540px] flex-col gap-10">
-      {currDisplayingImageIndex === null && (
-        <div className="h-[540px] w-[540px] animate-pulse rounded-md bg-stone-700"></div>
-      )}
-
-      {currDisplayingImageIndex !== null && (
-        <div className="h-[540px] w-[540px]">
-          <Image
-            className="rounded-md object-cover"
-            width={540}
-            height={540}
-            src={images ? images[currDisplayingImageIndex] : ""} // Display current image
-            alt={`Image ${currDisplayingImageIndex + 1}`} // Alternative text
-          />
-        </div>
-      )}
+      <div className="h-[540px] w-[540px]">
+        <Image
+          className="rounded-md object-cover"
+          width={540}
+          height={540}
+          src={images ? images[currDisplayingImageIndex] : ""} // Display current image
+          alt={`Image ${currDisplayingImageIndex + 1}`} // Alternative text
+        />
+      </div>
 
       <SpinnerButtons
         imageCount={images.length}
@@ -36,21 +30,11 @@ export function ImageSlider({ images }: Props) {
         setCurrDisplayingImageIndex={setCurrDisplayingImageIndex}
       />
 
-      {currDisplayingImageIndex === null && (
-        <div className="flex w-full justify-center gap-4">
-          <div className="h-[100px] w-[100px] animate-pulse rounded-md bg-stone-700"></div>
-          <div className="h-[100px] w-[100px] animate-pulse rounded-md bg-stone-700"></div>
-          <div className="h-[100px] w-[100px] animate-pulse rounded-md bg-stone-700"></div>
-        </div>
-      )}
-
-      {currDisplayingImageIndex !== null && (
-        <ImagesPagination
-          images={images}
-          currDisplayingImageIndex={currDisplayingImageIndex}
-          setCurrDisplayingImageIndex={setCurrDisplayingImageIndex}
-        />
-      )}
+      <ImagesPagination
+        images={images}
+        currDisplayingImageIndex={currDisplayingImageIndex}
+        setCurrDisplayingImageIndex={setCurrDisplayingImageIndex}
+      />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 type Props = {
   className?: string;
-  setCurrDisplayingImageIndex: Dispatch<SetStateAction<number | null>>;
+  setCurrDisplayingImageIndex: Dispatch<SetStateAction<number>>;
   imageCount: number;
 };
 

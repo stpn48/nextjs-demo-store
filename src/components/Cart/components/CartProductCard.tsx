@@ -5,6 +5,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { QuantityButtons } from "./QuantityButtons";
 import { useCart } from "@/store/useCart";
+import Link from "next/link";
+import { useCartVisibility } from "@/store/cartVisibility";
 
 type Props = {
   product: Product;
@@ -12,6 +14,7 @@ type Props = {
 
 export function CartProductCard({ product }: Props) {
   const { getProductQuantity, setCart } = useCart();
+  const { setCartVisible } = useCartVisibility();
 
   const [quantity, setQuantity] = useState(getProductQuantity(product.id));
 
@@ -30,13 +33,19 @@ export function CartProductCard({ product }: Props) {
   return (
     <div className="main-border-color flex justify-between border-b py-8">
       <div className="flex gap-4">
-        <Image
-          src={product.images[0]}
-          className="main-border-color rounded-md border"
-          width={100}
-          height={100}
-          alt="productImg"
-        />
+        <Link
+          onClick={() => setCartVisible(false)}
+          className="cursor-pointer"
+          href={`/product/${product.id}?image=0`}
+        >
+          <Image
+            src={product.images[0]}
+            className="main-border-color rounded-md border"
+            width={100}
+            height={100}
+            alt="productImg"
+          />
+        </Link>
         <div className="flex flex-col">
           <h1>{product.title}</h1>
           <h1 className="text-secondary">{product.category}</h1>
