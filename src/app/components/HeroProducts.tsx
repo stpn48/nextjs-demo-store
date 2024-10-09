@@ -10,7 +10,7 @@ export async function HeroProducts({}) {
   const data = await Promise.all(res.map((r) => r.json()));
 
   return (
-    <div className="mt-10 flex items-center gap-8">
+    <div className="mt-10 flex flex-col items-center gap-8 md:flex-row">
       <ProductCard size="lg" product={data[0]} />
       <div className="flex flex-col gap-8">
         <ProductCard product={data[1]} />

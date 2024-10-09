@@ -9,7 +9,7 @@ export default function CheckoutNavigation() {
   const pathname = usePathname();
 
   return (
-    <div className="text-secondary flex items-center gap-4 pb-8">
+    <div className="text-secondary absolute -right-14 -top-6 flex items-center gap-4 pb-8 text-xs md:relative md:right-0 md:top-0 md:mt-8 xl:mt-0">
       <Link
         className={twMerge(
           "cursor-pointer hover:text-white",

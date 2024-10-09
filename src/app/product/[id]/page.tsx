@@ -11,7 +11,7 @@ export default async function ProductDetailsPage({ params }: { params: { id: str
 
   return (
     <div className="flex min-h-screen w-screen flex-col items-center gap-10 overflow-x-hidden p-4">
-      <div className="main-border-color flex w-fit justify-center gap-10 overflow-x-hidden rounded-lg border bg-black p-10">
+      <div className="main-border-color flex w-fit flex-col justify-center gap-10 overflow-x-hidden rounded-lg border bg-black p-10 xl:flex-row">
         <ImageSlider images={productDetails.images} />
         <ProductDetails productDetails={productDetails} />
       </div>

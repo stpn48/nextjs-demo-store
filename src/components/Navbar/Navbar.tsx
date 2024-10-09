@@ -11,10 +11,10 @@ export function Navbar() {
         <Link prefetch className="hover:text-white" href={"/"}>
           <NavbarBtn>Z</NavbarBtn>
         </Link>
-        <Link className="hover:text-white" prefetch={true} href={"/search"}>
+        <Link className="hidden hover:text-white md:block" prefetch={true} href={"/search"}>
           All
         </Link>
-        <Link prefetch={true} className="hover:text-white" href={"/about"}>
+        <Link prefetch={true} className="hidden hover:text-white md:block" href={"/about"}>
           About
         </Link>
       </div>

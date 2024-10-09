@@ -13,7 +13,7 @@ export function OverviewCard({ title, value, changeHref, className }: Props) {
   return (
     <div
       className={twMerge(
-        "main-border-color flex justify-between border p-4 first:rounded-t-lg first:border-b-0 last:rounded-b-lg last:border-t-0",
+        "main-border-color flex flex-col justify-between border p-4 first:rounded-t-lg first:border-b-0 last:rounded-b-lg last:border-t-0 lg:flex-row",
         className,
       )}
     >

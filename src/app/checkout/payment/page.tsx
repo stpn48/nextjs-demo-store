@@ -12,7 +12,9 @@ export default function PaymentPage() {
         <p className="text-secondary text-sm">All transactions are securely encrypted.</p>
         <div className="main-border-color mt-4 flex h-[200px] flex-col items-center justify-center gap-4 rounded-lg border">
           <Image src={"/errorIcon.svg"} alt="error" width={50} height={50} />
-          <p className="text-secondary text-sm">This store can&apos;t accept payments right now</p>
+          <p className="text-secondary w-fit px-4 text-center text-sm">
+            This store can&apos;t accept payments right now
+          </p>
         </div>
       </div>
     </ProtectedCheckoutRoute>
