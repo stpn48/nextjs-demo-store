@@ -5,7 +5,7 @@ import { useCart } from "@/store/useCart";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartProductCard } from "./components/CartProductCard";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useCheckout } from "@/app/checkout/information/store/useCheckout";
 
 const slideInVariants = {
@@ -18,6 +18,26 @@ export default function Cart() {
   const { cartVisible, setCartVisible } = useCartVisibility();
   const { cart, getTotalPrice } = useCart();
   const { setUserDetails } = useCheckout();
+
+  const handleCheckoutButtonClick = useCallback(() => {
+    setCartVisible(false);
+
+    // Initialize user details to empty values
+    setUserDetails({
+      email: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      country: "",
+      apartment: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      shippingMethodId: 1,
+      shippingMethod: "Fast Delivery",
+      localStorageKey: "checkoutUserData",
+    });
+  }, [setCartVisible, setUserDetails]);
 
   // disable body scroll when cart is open
   useEffect(() => {
@@ -77,27 +97,7 @@ export default function Cart() {
                 <h1>Shipping</h1>
                 <h1 className="text-sm">Calculated at checkout</h1>
               </div>
-              <Link
-                onClick={() => {
-                  setCartVisible(false);
-                  setUserDetails({
-                    email: "",
-                    firstName: "",
-                    lastName: "",
-                    address: "",
-                    country: "",
-                    apartment: "",
-                    city: "",
-                    state: "",
-                    postalCode: "",
-                    shippingMethodId: 1,
-                    shippingMethod: "Fast Delivery",
-                    localStorageKey: "checkoutUserData",
-                  });
-                }}
-                prefetch
-                href={"/checkout/information"}
-              >
+              <Link onClick={handleCheckoutButtonClick} prefetch href={"/checkout/information"}>
                 <button className="w-full rounded-full bg-blue-600 px-4 py-1 hover:bg-blue-700">
                   Checkout
                 </button>
