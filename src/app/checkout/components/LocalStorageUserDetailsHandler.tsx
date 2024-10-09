@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCheckout } from "../information/store/useCheckout";
 import { allFieldsAreEmpty } from "@/utils/allFieldsEmpty";
-import toast from "react-hot-toast";
 import { LoadingSkeleton } from "../information/components/LoadingSkeleton";
+import { useCart } from "@/store/useCart";
+import { useRouter } from "next/navigation";
 
 export function LocalStorageUserDetailsHandler({ children }: { children: React.ReactNode }) {
   const { userDetails, setUserDetails } = useCheckout();
+  const { cart, cartFetched } = useCart();
+
+  const router = useRouter();
 
   // save user details to local storage when userDetails change
   useEffect(() => {
@@ -24,9 +28,18 @@ export function LocalStorageUserDetailsHandler({ children }: { children: React.R
     if (data !== null) {
       const storedUserDetails = JSON.parse(data);
       setUserDetails(storedUserDetails);
-      toast.success("User detail s retrieved from local storage.");
+    } else {
+      setUserDetails((prev) => ({ ...prev, localStorageKey: "afsdsddfa" }));
     }
   }, [setUserDetails]);
+
+  useEffect(() => {
+    if (!cartFetched) return;
+
+    if (cart.length === 0) {
+      router.push("/");
+    }
+  }, [cart]);
 
   if (allFieldsAreEmpty(userDetails)) {
     return <LoadingSkeleton />;

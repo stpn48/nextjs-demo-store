@@ -4,9 +4,11 @@ import { useCartVisibility } from "@/store/cartVisibility";
 import { useCart } from "@/store/useCart";
 import { motion, AnimatePresence } from "framer-motion";
 import { CartProductCard } from "./components/CartProductCard";
-import Link from "next/link";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useCheckout } from "@/app/checkout/information/store/useCheckout";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { useCheckoutButton } from "./useCheckoutButton";
 
 const slideInVariants = {
   hidden: { x: "100%" }, // start off-screen (to the right)
@@ -19,41 +21,15 @@ export default function Cart() {
   const { cart, getTotalPrice } = useCart();
   const { setUserDetails } = useCheckout();
 
+  const router = useRouter();
+
+  const { checkoutButtonDisabled } = useCheckoutButton();
+
   const handleCheckoutButtonClick = useCallback(() => {
     setCartVisible(false);
-
-    // Initialize user details to empty values
-    setUserDetails({
-      email: "",
-      firstName: "",
-      lastName: "",
-      address: "",
-      country: "",
-      apartment: "",
-      city: "",
-      state: "",
-      postalCode: "",
-      shippingMethodId: 1,
-      shippingMethod: "Fast Delivery",
-      localStorageKey: "checkoutUserData",
-    });
+    router.prefetch("/checkout/information");
+    router.push("/checkout/information");
   }, [setCartVisible, setUserDetails]);
-
-  // disable body scroll when cart is open
-  useEffect(() => {
-    if (cartVisible) {
-      // Disable body scroll
-      document.body.style.overflow = "hidden";
-    } else {
-      // Enable body scroll
-      document.body.style.overflow = "auto";
-    }
-
-    // Clean up function to reset body scroll when component unmounts
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [cartVisible]);
 
   return (
     <>
@@ -79,6 +55,11 @@ export default function Cart() {
             <div className="carousel-container flex flex-col overflow-y-auto">
               <h1 className="text-xl font-bold">Your Cart</h1>
 
+              {cart.length === 0 && (
+                <p className="text-secondary mt-10 flex w-full justify-center text-sm">
+                  No items in cart...
+                </p>
+              )}
               {cart.map((product) => (
                 <CartProductCard key={product.id} product={product} />
               ))}
@@ -97,11 +78,13 @@ export default function Cart() {
                 <h1>Shipping</h1>
                 <h1 className="text-sm">Calculated at checkout</h1>
               </div>
-              <Link onClick={handleCheckoutButtonClick} prefetch href={"/checkout/information"}>
-                <button className="w-full rounded-full bg-blue-600 px-4 py-1 hover:bg-blue-700">
-                  Checkout
-                </button>
-              </Link>
+              <button
+                disabled={checkoutButtonDisabled}
+                onClick={handleCheckoutButtonClick}
+                className="w-full rounded-full bg-blue-600 px-4 py-1 hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-blue-600"
+              >
+                Checkout
+              </button>
             </div>
           </motion.div>
         )}

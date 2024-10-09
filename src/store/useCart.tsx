@@ -11,6 +11,8 @@ type CartContextType = {
   getProductQuantity: (productId: number) => number;
   getTotalPrice: () => number;
   setShippingPrice: React.Dispatch<React.SetStateAction<number>>;
+  cartFetched: boolean;
+  shippingPrice: number;
 };
 
 const CartContext = createContext<CartContextType | null>(null);
@@ -23,6 +25,8 @@ export function CartProvider({ children }: Props) {
   const [cart, setCart] = useState<CartItem[]>([]); // Start with an empty cart
   const [shippingPrice, setShippingPrice] = useState<number>(0);
 
+  const [cartFetched, setCartFetched] = useState(false);
+
   // Fetch cart from localStorage on client side
   useEffect(() => {
     const cartContent = localStorage.getItem("cart");
@@ -30,7 +34,8 @@ export function CartProvider({ children }: Props) {
     if (cartContent && cartContent !== "undefined") {
       setCart(JSON.parse(cartContent));
     }
-  }, []); // Run only once when the component mounts
+    setCartFetched(true);
+  }, [setCartFetched, setCart]); // Run only once when the component mounts
 
   const addToCart = React.useCallback((newProduct: Product) => {
     setCart((prev) => {
@@ -68,10 +73,10 @@ export function CartProvider({ children }: Props) {
   }, [cart, shippingPrice]);
 
   useEffect(() => {
-    if (cart.length === 0) return;
+    if (!cartFetched) return;
 
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  }, [cart, cartFetched]);
 
   const value = useMemo(() => {
     return {
@@ -81,9 +86,19 @@ export function CartProvider({ children }: Props) {
       removeFromCart,
       getProductQuantity,
       getTotalPrice,
+      shippingPrice,
       setShippingPrice,
+      cartFetched,
     };
-  }, [cart, addToCart, removeFromCart, getProductQuantity, getTotalPrice]);
+  }, [
+    cart,
+    addToCart,
+    removeFromCart,
+    getProductQuantity,
+    getTotalPrice,
+    cartFetched,
+    shippingPrice,
+  ]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
