@@ -10,7 +10,7 @@ type Props = {
 };
 
 export function QuantityButtons({ quantity, setQuantity, productId }: Props) {
-  const { setCart, removeFromCart } = useCart();
+  const { removeFromCart } = useCart();
 
   const handleIncreaseQuantity = useCallback(() => {
     setQuantity((prev) => (prev !== null ? prev + 1 : 1));
