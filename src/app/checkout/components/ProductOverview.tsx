@@ -8,7 +8,7 @@ type Props = {
 
 export function ProductOverview({ product }: Props) {
   return (
-    <div className="main-border-color flex flex-col border-b py-4 md:flex-row">
+    <div className="flex flex-col border-b py-4 md:flex-row dark:border-[#212121]">
       <Image
         src={product.images[0]}
         alt={product.title}
