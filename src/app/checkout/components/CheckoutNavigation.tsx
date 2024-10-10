@@ -9,11 +9,11 @@ export default function CheckoutNavigation() {
   const pathname = usePathname();
 
   return (
-    <div className="text-secondary absolute -right-14 -top-6 flex items-center gap-4 pb-8 text-xs md:relative md:right-0 md:top-0 md:mt-8 xl:mt-0">
+    <div className="absolute -right-14 -top-6 flex items-center gap-4 pb-8 text-xs text-[#8d8d8d] md:relative md:right-0 md:top-0 md:mt-8 xl:mt-0">
       <Link
         className={twMerge(
-          "cursor-pointer hover:text-white",
-          pathname === "/checkout/information" && "text-white",
+          "cursor-pointer hover:text-black dark:hover:text-white",
+          pathname === "/checkout/information" && "text-black dark:text-white",
           (pathname === "/checkout/shipping" || pathname === "/checkout/payment") &&
             "text-blue-600",
         )}
@@ -26,8 +26,8 @@ export default function CheckoutNavigation() {
       </h1>
       <Link
         className={twMerge(
-          "cursor-pointer hover:text-white",
-          pathname === "/checkout/shipping" && "text-white",
+          "cursor-pointer hover:text-black dark:hover:text-white",
+          pathname === "/checkout/shipping" && "text-black dark:text-white",
           pathname === "/checkout/payment" && "text-blue-600",
           pathname === "/checkout/information" && "text-secondary pointer-events-none",
         )}
@@ -40,8 +40,8 @@ export default function CheckoutNavigation() {
       </h1>
       <Link
         className={twMerge(
-          "cursor-pointer hover:text-white",
-          pathname === "/checkout/payment" && "text-white",
+          "cursor-pointer hover:text-black dark:hover:text-white",
+          pathname === "/checkout/payment" && "text-black dark:text-white",
           (pathname === "/checkout/information" || pathname === "/checkout/shipping") &&
             "text-secondary pointer-events-none",
         )}
