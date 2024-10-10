@@ -81,16 +81,16 @@ export function Input({
         onBlur={handleOnBlur}
         onChange={handleOnChange}
         className={twMerge(
-          "none rounded-md border bg-inherit p-2 text-sm text-white outline-none",
+          "none rounded-md border bg-inherit p-2 text-sm text-black outline-none dark:text-white",
           className,
-          showRequiredError || error ? "border-[#db235b]" : "main-border-color",
+          showRequiredError || error ? "border-[#db235b]" : "dark:border-[#212121]",
         )}
         {...props}
       />
       {label && (
         <label
           className={twMerge(
-            `absolute left-2 top-0 -translate-y-2 transform bg-black text-xs transition-all`,
+            `absolute left-2 top-0 -translate-y-2 transform bg-white text-xs transition-all dark:bg-black`,
             displayLabel ? "text-xs opacity-100" : "text-sm opacity-0",
             showRequiredError || error ? "text-[#db235b]" : "text-secondary",
           )}

@@ -26,7 +26,7 @@ export function QuantityButtons({ quantity, setQuantity, productId }: Props) {
   }, [quantity, productId, removeFromCart, setQuantity]);
 
   return (
-    <div className="main-border-color flex items-center gap-3 rounded-full border bg-black bg-opacity-45 px-2 py-1 text-white">
+    <div className="flex items-center gap-3 rounded-full border bg-white bg-opacity-45 px-2 py-1 text-black dark:border-[#212121] dark:bg-black dark:text-white">
       <button onClick={handleDecreaseQuantity}>
         <MinusIcon />
       </button>
@@ -46,7 +46,7 @@ function PlusIcon() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="text-secondary size-5 hover:text-white"
+      className="size-5 text-[#212121] hover:text-black dark:text-[#8d8d8d] dark:hover:text-white"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
     </svg>
@@ -61,7 +61,7 @@ function MinusIcon() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="text-secondary size-5 hover:text-white"
+      className="size-5 text-[#212121] hover:text-black dark:text-[#8d8d8d] dark:hover:text-white"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
     </svg>

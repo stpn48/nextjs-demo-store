@@ -15,9 +15,9 @@ export function DeliveryChoice({ className, title, description, price, selected,
     <div
       onClick={onClick}
       className={twMerge(
-        "flex cursor-pointer justify-between p-4",
+        "flex cursor-pointer justify-between border p-4",
         className,
-        selected ? "border-blue-600" : "main-border-color border hover:border-[#2e2e2e]",
+        selected ? "border-blue-600" : "dark:border-[#212121]",
         selected && "border",
       )}
     >

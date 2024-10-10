@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { CartProvider } from "@/store/useCart";
 import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,21 +35,23 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} overflow-x-hidden font-medium ${geistMono.variable} main-bg font-geistSans antialiased`}
+        className={`${geistSans.variable} light:bg-white dark:main-bg overflow-x-hidden font-medium ${geistMono.variable} font-geistSans antialiased`}
       >
-        <ReactQueryProvider>
-          <CartProvider>
-            <Container>
-              <Navbar />
-              {children}
-              <Footer />
-              <Cart />
-            </Container>
-          </CartProvider>
-        </ReactQueryProvider>
+        <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+          <ReactQueryProvider>
+            <CartProvider>
+              <Container>
+                <Navbar />
+                {children}
+                <Footer />
+                <Cart />
+              </Container>
+            </CartProvider>
+          </ReactQueryProvider>
 
-        <Toaster />
-        <SpeedInsights />
+          <Toaster />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   );

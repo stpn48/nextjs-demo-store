@@ -4,8 +4,15 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Input } from "../../Input";
 import { useSearch } from "@/app/search/store/useSearch";
 import { useRouter, useSearchParams } from "next/navigation";
+import { twMerge } from "tailwind-merge";
+import { s } from "framer-motion/client";
 
-export function Searchbar() {
+type Props = {
+  className?: string;
+  searchBarClassName?: string;
+};
+
+export function Searchbar({ className, searchBarClassName }: Props) {
   const { query, setQuery } = useSearch();
 
   const [localQuery, setLocalQuery] = useState("");
@@ -54,12 +61,15 @@ export function Searchbar() {
     <div className="flex h-[38px] items-stretch">
       <button
         onClick={handleSearch}
-        className="main-border-color h-full flex-grow rounded-bl-md rounded-tl-md border-b border-l border-t p-2"
+        className={twMerge(
+          "h-full flex-grow rounded-bl-md rounded-tl-md border-b border-l border-t p-2",
+          className,
+        )}
       >
         <SearchLogo />
       </button>
       <Input
-        className="rounded-bl-none rounded-tl-none border-l-0"
+        className={twMerge("rounded-bl-none rounded-tl-none border-l-0", searchBarClassName)}
         value={localQuery}
         onChange={(e) => setLocalQuery(e.target.value)}
         placeholder="Search"

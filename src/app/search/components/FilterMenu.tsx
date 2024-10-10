@@ -52,11 +52,11 @@ export function FilterMenu() {
 
   return (
     <div className="flex w-fit flex-col gap-2 text-sm text-white">
-      <h1 className="text-xl font-bold">Filters</h1>
+      <h1 className="text-xl font-bold text-black dark:text-white">Filters</h1>
       {filterChoices.map((choice) => (
         <p
           key={choice}
-          className={`${filter === choice ? "text-white" : "text-secondary"} w-full cursor-pointer whitespace-nowrap hover:text-white`}
+          className={`${filter === choice ? "text-black dark:text-white" : "text-secondary"} w-full cursor-pointer whitespace-nowrap hover:text-black dark:hover:text-white`}
           onClick={() => handleChoiceClick(choice)}
         >
           {choice}

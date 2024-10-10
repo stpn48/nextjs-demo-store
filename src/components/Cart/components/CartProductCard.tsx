@@ -31,7 +31,7 @@ export function CartProductCard({ product }: Props) {
   }, [quantity, product.id, setCart]);
 
   return (
-    <div className="main-border-color flex justify-between border-b py-8">
+    <div className="flex justify-between border-b py-8 dark:border-[#212121]">
       <div className="flex gap-4">
         <Link
           onClick={() => setCartVisible(false)}
@@ -40,7 +40,7 @@ export function CartProductCard({ product }: Props) {
         >
           <Image
             src={product.images[0]}
-            className="main-border-color rounded-md border"
+            className="rounded-md border dark:border-[#212121]"
             width={100}
             height={100}
             alt="productImg"

@@ -14,12 +14,20 @@
   border-color: #212121;
 }
 
+.border-light {
+  border-color: #c7c7c7;
+}
+
 .main-button-color {
   background-color: #000000;
 }
 
 .text-secondary {
   color: #8d8d8d;
+}
+
+.main-text-light-mode {
+  color: #000000;
 }
 
 /* Change the background and text color of selected text */

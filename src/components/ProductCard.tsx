@@ -15,7 +15,7 @@ export function ProductCard({ product, size = "sm" }: ProductProps) {
 
   return (
     <div
-      className={`product-card main-border-color relative border bg-black ${size === "sm" ? "h-[350px] w-[350px]" : "h-[600px] w-[600px]"} cursor-pointer rounded-lg border-transparent transition-all hover:border-blue-600`}
+      className={`product-card light: relative border bg-[#f0f0f0] dark:border-[#212121] dark:bg-black ${size === "sm" ? "h-[350px] w-[350px]" : "h-[600px] w-[600px]"} light:hover:border-blue-600 cursor-pointer rounded-lg border-transparent transition-all dark:hover:border-blue-600`}
     >
       <Link prefetch={true} href={`/product/${product.id}?image=0`}>
         <div className={`h-full w-full overflow-hidden rounded-lg`}>

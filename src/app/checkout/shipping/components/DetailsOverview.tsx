@@ -8,9 +8,9 @@ export function DetailsOverview() {
   const { userDetails } = useCheckout();
 
   return (
-    <div className="main-border-color flex flex-col bg-black text-sm">
+    <div className="flex flex-col text-sm dark:bg-black">
       <OverviewCard title="Contact" value={userDetails.email} changeHref="/checkout/information" />
-      <div className="main-border-color border-t"></div>
+      <div className="border-t dark:border-[#212121]"></div>
       <OverviewCard
         title="Shipping Details"
         value={`${userDetails.firstName} ${userDetails.lastName}, ${userDetails.address}, ${userDetails.city}, ${userDetails.state}, ${userDetails.postalCode}, ${userDetails.country}, ${userDetails.apartment}`}
