@@ -31,7 +31,7 @@ export default function ContinueToShippingBtn() {
   return (
     <button
       onClick={handleClick}
-      className="mt-10 w-full rounded-full bg-blue-600 px-4 py-2 hover:bg-blue-700"
+      className="mt-10 w-full rounded-full bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
     >
       Continue to shipping
     </button>
