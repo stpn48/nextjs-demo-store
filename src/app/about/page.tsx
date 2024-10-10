@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AboutPage() {
   return (
-    <div className="flex w-full flex-col items-center px-6 py-20 text-white">
+    <div className="flex w-full flex-col items-center px-6 py-20 text-black dark:text-white">
       <div className="flex max-w-[700px] flex-col gap-8">
         <h1 className="text-5xl font-bold">About</h1>
         <p>
