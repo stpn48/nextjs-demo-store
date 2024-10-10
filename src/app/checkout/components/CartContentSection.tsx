@@ -8,7 +8,7 @@ export default function CartContentSection() {
   const { cart, getTotalPrice, shippingPrice } = useCart();
 
   return (
-    <section className="main-border-color carousel-container mt-10 flex w-full flex-col justify-between border-t p-8 xl:mt-0 xl:w-[40%] xl:border-l">
+    <section className="carousel-container mt-10 flex w-full flex-col justify-between border-t p-8 xl:mt-0 xl:w-[40%] xl:border-l dark:border-[#212121]">
       <div className="overflow-y-auto">
         {cart.map((product) => (
           <ProductOverview key={product.id} product={product} />
