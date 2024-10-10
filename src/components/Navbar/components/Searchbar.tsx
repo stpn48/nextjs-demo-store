@@ -5,7 +5,6 @@ import { Input } from "../../Input";
 import { useSearch } from "@/app/search/store/useSearch";
 import { useRouter, useSearchParams } from "next/navigation";
 import { twMerge } from "tailwind-merge";
-import { s } from "framer-motion/client";
 
 type Props = {
   className?: string;
