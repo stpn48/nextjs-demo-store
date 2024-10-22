@@ -2,10 +2,8 @@
 
 import { useSearch } from "@/app/search/store/useSearch";
 import { Product } from "@/types/types";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { throttle } from "lodash";
-import { useEffect } from "react";
 import { getFilterParams } from "@/utils/getFilterParams";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const PRODUCTS_PER_PAGE = 20;
 
@@ -54,22 +52,6 @@ export function useInfiniteProducts() {
     initialPageParam: 0,
     staleTime: 5 * 60 * 1000, // Cache data for 5 minutes
   });
-
-  const { isFetching, fetchNextPage, hasNextPage } = queryResult;
-
-  useEffect(() => {
-    const handleScroll = throttle(() => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
-        if (hasNextPage && !isFetching) {
-          fetchNextPage();
-        }
-      }
-    }, 300);
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [fetchNextPage, hasNextPage, isFetching]);
 
   // Restructure the return object like this:
   return queryResult;
