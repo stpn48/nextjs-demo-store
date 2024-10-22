@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import { Container } from "@/components/Container";
-import { Navbar } from "@/components/Navbar/Navbar";
-import { Footer } from "@/components/Footer/Footer";
 import Cart from "@/components/Cart/Cart";
-import { Toaster } from "react-hot-toast";
-import { CartProvider } from "@/store/useCart";
+import { Container } from "@/components/Container";
+import { Footer } from "@/components/Footer/Footer";
+import { Navbar } from "@/components/Navbar/Navbar";
 import { ReactQueryProvider } from "@/components/ReactQueryProvider";
+import { CartProvider } from "@/store/useCart";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
+import "./globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,14 +42,36 @@ export default function RootLayout({
             <CartProvider>
               <Container>
                 <Navbar />
-                {children}
+                <div className="mt-20">{children}</div>
                 <Footer />
                 <Cart />
               </Container>
             </CartProvider>
           </ReactQueryProvider>
 
-          <Toaster />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              success: {
+                icon: "✅",
+                style: {
+                  background: "#131313",
+                  color: "white",
+                  borderColor: "#212121",
+                  borderWidth: "1px",
+                },
+              },
+              error: {
+                icon: "❌",
+                style: {
+                  background: "#131313",
+                  color: "white",
+                  borderColor: "#212121",
+                  borderWidth: "1px",
+                },
+              },
+            }}
+          />
           <SpeedInsights />
         </ThemeProvider>
       </body>
