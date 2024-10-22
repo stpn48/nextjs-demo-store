@@ -1,10 +1,10 @@
 "use client";
 
-import { ProductListSkeleton } from "./ProductListSkeleton";
-import React from "react";
-import { ProductCard } from "@/components/ProductCard";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { ProductCard } from "@/components/ProductCard";
 import { useInfiniteProducts } from "@/hooks/useInfiniteProducts";
+import React from "react";
+import { ProductListSkeleton } from "./ProductListSkeleton";
 
 export function ProductList() {
   const {
@@ -13,6 +13,7 @@ export function ProductList() {
     isError,
     isFetchingNextPage,
     isRefetching,
+    fetchNextPage,
   } = useInfiniteProducts();
 
   if (isLoading || isRefetching) {
@@ -30,6 +31,18 @@ export function ProductList() {
           page.map((product) => <ProductCard key={product.id} product={product} />),
         )}
       </div>
+
+      {!isFetchingNextPage && (
+        <div className="flex w-full justify-center">
+          <button
+            className="w-fit rounded-lg border bg-white px-4 py-2 text-black dark:border-[#232323] dark:bg-black dark:text-white"
+            onClick={() => fetchNextPage()}
+          >
+            Load More
+          </button>
+        </div>
+      )}
+
       {isFetchingNextPage && (
         <div className="flex w-full justify-center">
           <LoadingSpinner />
