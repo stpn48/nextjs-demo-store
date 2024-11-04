@@ -1,3 +1,5 @@
+import { User } from "@supabase/supabase-js";
+
 // Define types for the dimensions of the product
 interface Dimensions {
   width: number;
@@ -78,4 +80,18 @@ export type UserDetails = {
   shippingMethodId: number;
   shippingMethod: string;
   localStorageKey: string;
+};
+
+export type UserLoggedIn = User & {
+  role: {
+    id: number;
+    userId: string;
+    role: string;
+    createdAt: Date;
+  };
+};
+
+export type Guest = {
+  role: string;
+  createdAt: Date;
 };
